@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tienda.Servicios.Api.CarritoCompra", "Tienda.Servicios.Api.CarritoCompra\Tienda.Servicios.Api.CarritoCompra.csproj", "{BA9E703B-5013-4733-8C35-D4A850975B7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA9E703B-5013-4733-8C35-D4A850975B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9E703B-5013-4733-8C35-D4A850975B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9E703B-5013-4733-8C35-D4A850975B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9E703B-5013-4733-8C35-D4A850975B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BC0C700-3EC1-4C99-81A4-2A2C7C81FE60}
+	EndGlobalSection
+EndGlobal
