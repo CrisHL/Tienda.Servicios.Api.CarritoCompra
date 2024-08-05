@@ -54,6 +54,9 @@ namespace Tienda.Servicios.Api.CarritoCompra.Aplicacion
                         {
                             TituloLibro = objectoLibro.Titulo,
                             FechaPublicacion = objectoLibro.FechaPublicacion,
+                            Precio = objectoLibro.Precio,
+                            IVA = objectoLibro.IVA,
+                            Image = objectoLibro.Image,
                             LibroId = objectoLibro.LibreriaMaterialId,
                             AutorLibro = $"{responseAutor.Autor.Nombre} {responseAutor.Autor.Apellido}"
                         };

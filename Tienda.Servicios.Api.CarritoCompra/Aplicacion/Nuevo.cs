@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Tienda.Servicios.Api.CarritoCompra.Modelo;
 using Tienda.Servicios.Api.CarritoCompra.Persistencia;
+using Tienda.Servicios.Api.CarritoCompra.Servicios;
 
 namespace Tienda.Servicios.Api.CarritoCompra.Aplicacion
 {
@@ -15,9 +16,11 @@ namespace Tienda.Servicios.Api.CarritoCompra.Aplicacion
         public class Manejador : IRequestHandler<Ejecuta>
         {
             private readonly CarritoContexto _contexto;
-            public Manejador(CarritoContexto contexto)
+            private readonly ITemporalStorage _temporalStorage;
+            public Manejador(CarritoContexto contexto, ITemporalStorage temporalStorage)
             {
                 _contexto = contexto;
+                _temporalStorage = temporalStorage;
             }
 
             public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
@@ -48,6 +51,7 @@ namespace Tienda.Servicios.Api.CarritoCompra.Aplicacion
 
                 if (value > 0)
                 {
+                    _temporalStorage.AlmacenarId(id);
                     return Unit.Value;
                 }
                 throw new Exception("No se pudo inserta el detalle del carrido de compras");

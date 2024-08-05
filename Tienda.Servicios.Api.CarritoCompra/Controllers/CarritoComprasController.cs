@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tienda.Servicios.Api.CarritoCompra.Aplicacion;
+using Tienda.Servicios.Api.CarritoCompra.Servicios;
 
 namespace Tienda.Servicios.Api.CarritoCompra.Controllers
 {
@@ -9,16 +10,20 @@ namespace Tienda.Servicios.Api.CarritoCompra.Controllers
     public class CarritoComprasController : ControllerBase
     {
         private readonly IMediator _mediator;
+        public readonly ITemporalStorage _temporalStorage;
 
-        public CarritoComprasController(IMediator mediator)
+        public CarritoComprasController(IMediator mediator, ITemporalStorage temporalStorage)
         {
             _mediator = mediator;
+            _temporalStorage = temporalStorage;
         }
 
         [HttpPost]
         public async Task<ActionResult<Unit>> Crear(Nuevo.Ejecuta data)
         {
-            return await _mediator.Send(data);
+            await _mediator.Send(data);
+            var id = _temporalStorage.ObtenerID();
+            return Ok(new { Unit = Unit.Value, IDCarrito = id });
         }
 
         [HttpGet("{id}")]

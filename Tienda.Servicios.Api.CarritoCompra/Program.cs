@@ -4,15 +4,17 @@ using Tienda.Servicios.Api.CarritoCompra.Aplicacion;
 using Tienda.Servicios.Api.CarritoCompra.Persistencia;
 using Tienda.Servicios.Api.CarritoCompra.RemoteInterface;
 using Tienda.Servicios.Api.CarritoCompra.RemoteServices;
+using Tienda.Servicios.Api.CarritoCompra.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<CarritoContexto>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<ITemporalStorage, TemporalStorage>();
 builder.Services.AddTransient<ILibroService, LibroService>();
 builder.Services.AddTransient<IAutorService, AutorService>();
+builder.Services.AddTransient<ICuponService, CuponService>();
 builder.Services.AddHttpClient("Libros", client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["Services:Libros"]);
@@ -20,6 +22,10 @@ builder.Services.AddHttpClient("Libros", client =>
 builder.Services.AddHttpClient("Autores", client =>
 {
     client.BaseAddress = new Uri(builder.Configuration["Services:Autores"]);
+});
+builder.Services.AddHttpClient("Cupones", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:Cupones"]);
 });
 
 builder.Services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
